@@ -38,12 +38,34 @@ class PrintUtils {
     }
 
     static void printNumberCounterStats(Map<Long, Integer> map){
-        System.out.println("Total numbers: " + map.size() + ".");
         long sum = 0;
         for (Integer n : map.values()){
             sum += n;
         }
+        System.out.println("Total numbers: " + sum + ".");
         for (Map.Entry<Long, Integer> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue() + " time(s), " + Math.round(100.0 * entry.getValue() / sum) + "%.");
+        }
+    }
+
+    static void printWordCounterStats(Map<String, Integer> map){
+        long sum = 0;
+        for (Integer n : map.values()){
+            sum += n;
+        }
+        System.out.println("Total words: " + sum + ".");
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue() + " time(s), " + Math.round(100.0 * entry.getValue() / sum) + "%.");
+        }
+    }
+
+    static void printLineCounterStats(Map<String, Integer> map){
+        long sum = 0;
+        for (Integer n : map.values()){
+            sum += n;
+        }
+        System.out.println("Total lines: " + sum + ".");
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
             System.out.println(entry.getKey() + ": " + entry.getValue() + " time(s), " + Math.round(100.0 * entry.getValue() / sum) + "%.");
         }
     }

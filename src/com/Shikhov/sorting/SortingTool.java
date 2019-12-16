@@ -64,15 +64,21 @@ public class SortingTool {
         ArrayList<String> stringList = getDataFromStdin();
         switch (dataType){
             case LINE:
-                Collections.sort(stringList);
-                printSortedLineStats(stringList);
+                if (sortingType == SortingType.BY_COUNT){
+                    HashMap<String, Integer> map = getStringCounter(stringList);
+                    LinkedHashMap<String, Integer> sortedMap = sortNumberHashMapByKey2(map);
+                    printWordCounterStats(sortedMap);
+                } else {
+                    Collections.sort(stringList);
+                    printSortedLineStats(stringList);
+                }
                 break;
             case LONG:
                 ArrayList<Long> numberList = convertStringListToLongList(stringList);
                 if (sortingType == SortingType.BY_COUNT){
                     HashMap<Long, Integer> map = getCounterHashMap(numberList);
-                    LinkedHashMap<Long, Integer> sortedMap = sortHashMapByKey(map);
-                    PrintUtils.printNumberCounterStats(sortedMap);
+                    LinkedHashMap<Long, Integer> sortedMap = sortNumberHashMapByKey2(map);
+                    printNumberCounterStats(sortedMap);
                 } else {
                     Collections.sort(numberList);
                     printSortedNumberStats(numberList);
@@ -80,8 +86,14 @@ public class SortingTool {
                 break;
             case WORD:
             default:
-                Collections.sort(stringList);
-                printSortedWordStats(stringList);
+                if (sortingType == SortingType.BY_COUNT){
+                    HashMap<String, Integer> map = getStringCounter(stringList);
+                    LinkedHashMap<String, Integer> sortedMap = sortNumberHashMapByKey2(map);
+                    printWordCounterStats(sortedMap);
+                } else {
+                    Collections.sort(stringList);
+                    printSortedWordStats(stringList);
+                }
                 break;
         }
     }

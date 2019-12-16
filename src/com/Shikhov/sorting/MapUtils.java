@@ -12,7 +12,7 @@ class MapUtils {
         return numberList;
     }
 
-    static LinkedHashMap<Long, Integer> sortHashMapByKey(HashMap<Long, Integer> map){
+    static LinkedHashMap<Long, Integer> sortNumberHashMapByKey(HashMap<Long, Integer> map){
         ArrayList<Long> keys = new ArrayList<>(map.keySet());
         ArrayList<Integer> values = new ArrayList<>(map.values());
         Collections.sort(keys);
@@ -23,6 +23,27 @@ class MapUtils {
             Iterator<Long> keyIt = keys.iterator();
             while (keyIt.hasNext()){
                 Long key = keyIt.next();
+                if (map.get(key).equals(value)){
+                    keyIt.remove();
+                    sortedMap.put(key, value);
+                    break;
+                }
+            }
+        }
+        return sortedMap;
+    }
+
+    static <E extends Comparable<E>> LinkedHashMap<E, Integer> sortNumberHashMapByKey2(HashMap<E, Integer> map){
+        ArrayList<E> keys = new ArrayList<>(map.keySet());
+        ArrayList<Integer> values = new ArrayList<>(map.values());
+        Collections.sort(keys);
+        Collections.sort(values);
+        LinkedHashMap<E, Integer> sortedMap = new LinkedHashMap<>();
+
+        for (Integer value : values) {
+            Iterator<E> keyIt = keys.iterator();
+            while (keyIt.hasNext()){
+                E key = keyIt.next();
                 if (map.get(key).equals(value)){
                     keyIt.remove();
                     sortedMap.put(key, value);

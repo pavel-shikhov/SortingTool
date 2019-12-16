@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4681b6c6-6e2d-4d4d-8fb8-e1b93d209dc2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/Shikhov/sorting/MapUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SortingTool/com/Shikhov/sorting/PrintUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SortingTool/com/Shikhov/sorting/PrintUtils.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SortingTool/com/Shikhov/sorting/SortingTool$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SortingTool/com/Shikhov/sorting/SortingTool$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SortingTool/com/Shikhov/sorting/SortingTool$DataType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SortingTool/com/Shikhov/sorting/SortingTool$DataType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/SortingTool/com/Shikhov/sorting/SortingTool$SortingType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SortingTool/com/Shikhov/sorting/SortingTool$SortingType.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SortingTool/com/Shikhov/sorting/SortingTool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SortingTool/com/Shikhov/sorting/SortingTool.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/Shikhov/sorting/MapUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Shikhov/sorting/MapUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Shikhov/sorting/PrintUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Shikhov/sorting/PrintUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Shikhov/sorting/SortingTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Shikhov/sorting/SortingTool.java" afterDir="false" />
     </list>
@@ -38,7 +40,7 @@
     <configuration name="SortingTool" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.Shikhov.sorting.SortingTool" />
       <module name="SortingTool" />
-      <option name="PROGRAM_PARAMETERS" value="-dataType word -sortingType byCount" />
+      <option name="PROGRAM_PARAMETERS" value="-sortingType byCount -dataType word" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -68,7 +70,7 @@
       <updated>1576322079703</updated>
       <workItem from="1576322082110" duration="21784000" />
       <workItem from="1576436695345" duration="8233000" />
-      <workItem from="1576503803430" duration="5768000" />
+      <workItem from="1576503803430" duration="10298000" />
     </task>
     <servers />
   </component>
@@ -80,12 +82,12 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2610" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1576476153168" />
-    <state x="2215" y="240" width="1152" height="632" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576508790205">
+    <state x="2215" y="240" width="1152" height="632" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576517004973">
       <screen x="0" y="0" width="3840" height="1049" />
     </state>
     <state x="541" y="249" width="1092" height="631" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576336195244" />
     <state x="541" y="251" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1049@0.0.1920.1049" timestamp="1576505319676" />
-    <state x="2215" y="240" width="1152" height="632" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3840.1049@0.0.3840.1049" timestamp="1576508790205" />
+    <state x="2215" y="240" width="1152" height="632" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3840.1049@0.0.3840.1049" timestamp="1576517004973" />
     <state x="690" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1576322104608">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -102,30 +104,30 @@
       <screen x="0" y="0" width="1920" height="1049" />
     </state>
     <state x="743" y="283" width="428" height="481" key="FileChooserDialogImpl/0.0.1920.1049@0.0.1920.1049" timestamp="1576503831383" />
-    <state width="1870" height="285" key="GridCell.Tab.0.bottom" timestamp="1576508834652">
+    <state width="1860" height="273" key="GridCell.Tab.0.bottom" timestamp="1576516941582">
       <screen x="0" y="0" width="3840" height="1049" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1576353521536" />
     <state width="1870" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1049@0.0.1920.1049" timestamp="1576506948799" />
-    <state width="1870" height="285" key="GridCell.Tab.0.bottom/0.0.3840.1049@0.0.3840.1049" timestamp="1576508834652" />
-    <state width="1870" height="285" key="GridCell.Tab.0.center" timestamp="1576508834649">
+    <state width="1860" height="273" key="GridCell.Tab.0.bottom/0.0.3840.1049@0.0.3840.1049" timestamp="1576516941582" />
+    <state width="1860" height="273" key="GridCell.Tab.0.center" timestamp="1576516941578">
       <screen x="0" y="0" width="3840" height="1049" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1576353521535" />
     <state width="1870" height="276" key="GridCell.Tab.0.center/0.0.1920.1049@0.0.1920.1049" timestamp="1576506948796" />
-    <state width="1870" height="285" key="GridCell.Tab.0.center/0.0.3840.1049@0.0.3840.1049" timestamp="1576508834649" />
-    <state width="1870" height="285" key="GridCell.Tab.0.left" timestamp="1576508834647">
+    <state width="1860" height="273" key="GridCell.Tab.0.center/0.0.3840.1049@0.0.3840.1049" timestamp="1576516941578" />
+    <state width="1860" height="273" key="GridCell.Tab.0.left" timestamp="1576516941575">
       <screen x="0" y="0" width="3840" height="1049" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1576353521535" />
     <state width="1870" height="276" key="GridCell.Tab.0.left/0.0.1920.1049@0.0.1920.1049" timestamp="1576506948794" />
-    <state width="1870" height="285" key="GridCell.Tab.0.left/0.0.3840.1049@0.0.3840.1049" timestamp="1576508834647" />
-    <state width="1870" height="285" key="GridCell.Tab.0.right" timestamp="1576508834650">
+    <state width="1860" height="273" key="GridCell.Tab.0.left/0.0.3840.1049@0.0.3840.1049" timestamp="1576516941575" />
+    <state width="1860" height="273" key="GridCell.Tab.0.right" timestamp="1576516941580">
       <screen x="0" y="0" width="3840" height="1049" />
     </state>
     <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1576353521536" />
     <state width="1870" height="276" key="GridCell.Tab.0.right/0.0.1920.1049@0.0.1920.1049" timestamp="1576506948797" />
-    <state width="1870" height="285" key="GridCell.Tab.0.right/0.0.3840.1049@0.0.3840.1049" timestamp="1576508834650" />
+    <state width="1860" height="273" key="GridCell.Tab.0.right/0.0.3840.1049@0.0.3840.1049" timestamp="1576516941580" />
     <state width="1870" height="341" key="GridCell.Tab.1.bottom" timestamp="1576505636338">
       <screen x="0" y="0" width="1920" height="1049" />
     </state>
