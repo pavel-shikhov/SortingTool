@@ -1,51 +1,131 @@
 package com.Shikhov.sorting;
 
 import java.util.*;
+import static com.Shikhov.sorting.PrintUtils.*;
+
+import static java.util.Arrays.asList;
+
 
 public class SortingTool {
     public static void main(String[] args) {
-        SortingTool sortingTool = new SortingTool();
-        sortingTool.processInput(args);
+        Scanner scanner = new Scanner(System.in);
+
     }
 
-    private enum State {
-        ON,
-        SORTING_INTEGERS,
-        PROCESSING_LONGS,
-        PROCESSING_LINES,
-        PROCESSING_WORDS
+
+    private enum DataType {
+        LONG,
+        LINE,
+        WORD
     }
 
-    State state;
+    private enum SortingType {
+        NATURAL,
+        BY_COUNT
+    }
+
+    DataType dataType;
+    SortingType sortingType;
     public SortingTool() {
-        this.state = State.ON;
+        this.dataType = DataType.WORD;
+        this.sortingType = SortingType.NATURAL;
     }
+
+    private void processCommandLineArgs(String[] args){
+        for (int i = 0; i < args.length; i++) {
+            args[i] = args[i].toLowerCase(Locale.ENGLISH);
+        }
+        List<String> argsList = Arrays.asList(args);
+        if (argsList.contains("-sortingType")) {
+            int index = argsList.indexOf("-sortingType");
+            if (index + 1 < argsList.size() && "bycount".equals(argsList.get(index + 1))){
+                sortingType = SortingType.BY_COUNT;
+            }
+        }
+        if (argsList.contains("-dataType")) {
+            int index = argsList.indexOf("-dataType");
+            if (index + 1 < argsList.size()){
+                switch (argsList.get(index + 1).toLowerCase(Locale.ENGLISH)){
+                    case "long":
+                        dataType = DataType.LONG;
+                        break;
+                    case "line":
+                        dataType = DataType.LINE;
+                        break;
+                    case "word":
+                    default:
+                        dataType = DataType.WORD;
+                        break;
+                }
+            }
+        }
+    }
+
+    private static HashMap<Long, Integer> getNumberCounter(ArrayList<String> stringList){
+        ArrayList<Long> longList = convertStringListToLongList(stringList);
+        Set<Long> numberSet = new HashSet<>(longList);
+        HashMap<Long, Integer> map = new HashMap<>();
+        for (Long number : numberSet){
+            map.put(number, Collections.frequency(longList, number));
+        }
+        return map;
+    }
+
+    private static HashMap<String, Integer> getStringCounter(ArrayList<String> stringList){
+        Set<String> stringSet = new HashSet<>(stringList);
+        HashMap<String, Integer> map = new HashMap<>();
+        for (String string : stringSet){
+            map.put(string, Collections.frequency(stringList, string));
+        }
+        return map;
+    }
+
+
 
     private void processInput(String[] args) {
+        ArrayList<String> stringList = getDataFromStdin();
+
+        switch (dataType){
+            case LINE:
+
+                break;
+            case WORD:
+
+                break;
+            case LONG:
+                if (sortingType == SortingType.BY_COUNT){
+                    HashMap<Long, Integer> map = getNumberCounter(stringList);
+                    TreeMap<Long, Integer> sortedMap = new TreeMap<>(map);
+                    PrintUtils.printNumberCounterStats(sortedMap);
+                }
+                break;
+        }
+
+
         ArrayList<String> stringList;
-        if (Arrays.asList(args).contains("-sortIntegers")) {
-            state = State.SORTING_INTEGERS;
-            stringList = getStringList();
+        if (asList(args).contains("-sortIntegers")) {
+            dataType = DataType.SORTING_INTEGERS;
+            stringList = getDataFromStdin();
             ArrayList<Long> longList = convertStringListToLongList(stringList);
             Collections.sort(longList);
             printSortedListStats(longList);
         } else if (args.length >= 1 && args.length <= 2 && args[0].equals("-dataType")){
             switch (args[1]){
                 case "long":
-                    state = State.PROCESSING_LONGS;
-                    stringList = getStringList();
+                    dataType = DataType.PROCESSING_LONGS;
+                    stringList = getDataFromStdin();
                     ArrayList<Long> longList = convertStringListToLongList(stringList);
                     printLongsStats(longList);
                     break;
                 case "line":
-                    state = State.PROCESSING_LINES;
-                    stringList = getStringList();
+                    dataType = DataType.PROCESSING_LINES;
+                    stringList = getDataFromStdin();
                     printLinesStats(stringList);
                     break;
                 case "word":
                 default:
-                    stringList = getStringList();
-                    state = State.PROCESSING_WORDS;
+                    stringList = getDataFromStdin();
+                    dataType = DataType.PROCESSING_WORDS;
                     printWordsStats(stringList);
                     break;
             }
@@ -54,16 +134,16 @@ public class SortingTool {
 
     //Made it non-static to use current object's `state`.
     // Any workaround?
-    private ArrayList<String> getStringList(){
+    private ArrayList<String> getDataFromStdin(){
         Scanner scanner = new Scanner(System.in);
         ArrayList<String> stringList = new ArrayList<>();
-        switch (state){
-            case PROCESSING_LINES:
+        switch (dataType){
+            case LINE:
                 while (scanner.hasNextLine()){
                     stringList.add(scanner.nextLine());
                 }
-            case PROCESSING_WORDS:
-            case PROCESSING_LONGS:
+            case WORD:
+            case LONG:
             default:
                 while (scanner.hasNext()){
                     stringList.add(scanner.next());
@@ -80,36 +160,7 @@ public class SortingTool {
         }
         return numberList;
     }
-
-    private static void printSortedListStats(ArrayList<Long> sortedList){
-        System.out.println("Total numbers: " + sortedList.size() + ".");
-        System.out.print("Sorted data: ");
-        for (Long number : sortedList) {
-            System.out.print(number + " ");
-        }
-    }
-
-    private static void printLongsStats(ArrayList<Long> numberList){
-        int frequency = Collections.frequency(numberList, Collections.max(numberList));
-        System.out.println("Total numbers: " + numberList.size() + ".");
-        System.out.println("The greatest number: " + Collections.max(numberList) + " (" + frequency
-                + " time(s), " + 100 * frequency / numberList.size() + "%).");
-    }
-
-    private static void printWordsStats(ArrayList<String> words){
-        int frequency = Collections.frequency(words, Collections.max(words));
-        String longestString = Collections.max(words, Comparator.comparing(String::length));
-        System.out.println("Total words: " + words.size() + ".");
-        System.out.println("The longest word: " + longestString + " (" + frequency
-                 + " time(s), " + 100 * frequency / words.size() + "%).");
-    }
-
-    private static void printLinesStats(ArrayList<String> lines){
-        int frequency = Collections.frequency(lines, Collections.max(lines));
-        String longestString = Collections.max(lines, Comparator.comparing(String::length));
-        System.out.println("Total lines: " + lines.size() + ".");
-        System.out.println("The longest line:");
-        System.out.println(longestString);
-        System.out.println("(" + frequency + " time(s), " + 100 * frequency / lines.size() + "%).");
-    }
 }
+
+
+
