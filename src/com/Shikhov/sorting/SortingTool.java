@@ -2,16 +2,15 @@ package com.Shikhov.sorting;
 
 import java.util.*;
 import static com.Shikhov.sorting.PrintUtils.*;
-
-import static java.util.Arrays.asList;
+import static com.Shikhov.sorting.MapUtils.*;
 
 
 public class SortingTool {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
+        SortingTool tool = new SortingTool();
+        tool.processCommandLineArgs(args);
+        tool.getStatistics();
     }
-
 
     private enum DataType {
         LONG,
@@ -36,14 +35,14 @@ public class SortingTool {
             args[i] = args[i].toLowerCase(Locale.ENGLISH);
         }
         List<String> argsList = Arrays.asList(args);
-        if (argsList.contains("-sortingType")) {
-            int index = argsList.indexOf("-sortingType");
+        if (argsList.contains("-sortingtype")) {
+            int index = argsList.indexOf("-sortingtype");
             if (index + 1 < argsList.size() && "bycount".equals(argsList.get(index + 1))){
                 sortingType = SortingType.BY_COUNT;
             }
         }
-        if (argsList.contains("-dataType")) {
-            int index = argsList.indexOf("-dataType");
+        if (argsList.contains("-datatype")) {
+            int index = argsList.indexOf("-datatype");
             if (index + 1 < argsList.size()){
                 switch (argsList.get(index + 1).toLowerCase(Locale.ENGLISH)){
                     case "long":
@@ -61,79 +60,34 @@ public class SortingTool {
         }
     }
 
-    private static HashMap<Long, Integer> getNumberCounter(ArrayList<String> stringList){
-        ArrayList<Long> longList = convertStringListToLongList(stringList);
-        Set<Long> numberSet = new HashSet<>(longList);
-        HashMap<Long, Integer> map = new HashMap<>();
-        for (Long number : numberSet){
-            map.put(number, Collections.frequency(longList, number));
-        }
-        return map;
-    }
-
-    private static HashMap<String, Integer> getStringCounter(ArrayList<String> stringList){
-        Set<String> stringSet = new HashSet<>(stringList);
-        HashMap<String, Integer> map = new HashMap<>();
-        for (String string : stringSet){
-            map.put(string, Collections.frequency(stringList, string));
-        }
-        return map;
-    }
-
-
-
-    private void processInput(String[] args) {
+    private void getStatistics() {
         ArrayList<String> stringList = getDataFromStdin();
-
         switch (dataType){
             case LINE:
-
-                break;
-            case WORD:
-
+                Collections.sort(stringList);
+                printSortedLineStats(stringList);
                 break;
             case LONG:
+                ArrayList<Long> numberList = convertStringListToLongList(stringList);
                 if (sortingType == SortingType.BY_COUNT){
-                    HashMap<Long, Integer> map = getNumberCounter(stringList);
-                    TreeMap<Long, Integer> sortedMap = new TreeMap<>(map);
+                    HashMap<Long, Integer> map = getCounterHashMap(numberList);
+                    LinkedHashMap<Long, Integer> sortedMap = sortHashMapByKey(map);
                     PrintUtils.printNumberCounterStats(sortedMap);
+                } else {
+                    Collections.sort(numberList);
+                    printSortedNumberStats(numberList);
                 }
                 break;
-        }
-
-
-        ArrayList<String> stringList;
-        if (asList(args).contains("-sortIntegers")) {
-            dataType = DataType.SORTING_INTEGERS;
-            stringList = getDataFromStdin();
-            ArrayList<Long> longList = convertStringListToLongList(stringList);
-            Collections.sort(longList);
-            printSortedListStats(longList);
-        } else if (args.length >= 1 && args.length <= 2 && args[0].equals("-dataType")){
-            switch (args[1]){
-                case "long":
-                    dataType = DataType.PROCESSING_LONGS;
-                    stringList = getDataFromStdin();
-                    ArrayList<Long> longList = convertStringListToLongList(stringList);
-                    printLongsStats(longList);
-                    break;
-                case "line":
-                    dataType = DataType.PROCESSING_LINES;
-                    stringList = getDataFromStdin();
-                    printLinesStats(stringList);
-                    break;
-                case "word":
-                default:
-                    stringList = getDataFromStdin();
-                    dataType = DataType.PROCESSING_WORDS;
-                    printWordsStats(stringList);
-                    break;
-            }
+            case WORD:
+            default:
+                Collections.sort(stringList);
+                printSortedWordStats(stringList);
+                break;
         }
     }
 
     //Made it non-static to use current object's `state`.
-    // Any workaround?
+    // Should it be like that?
     private ArrayList<String> getDataFromStdin(){
         Scanner scanner = new Scanner(System.in);
         ArrayList<String> stringList = new ArrayList<>();
@@ -150,15 +104,6 @@ public class SortingTool {
                 }
         }
         return stringList;
-    }
-
-    //TODO: provide for a situation when a stringList item is NOT a string representation of a number
-    private static ArrayList<Long> convertStringListToLongList(ArrayList<String> stringList){
-        ArrayList<Long> numberList = new ArrayList<>();
-        for (String stringNumber : stringList) {
-            numberList.add(Long.valueOf(stringNumber));
-        }
-        return numberList;
     }
 }
 
