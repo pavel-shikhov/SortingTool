@@ -8,7 +8,7 @@ import static com.Shikhov.sorting.MapUtils.*;
 public class SortingTool {
     public static void main(String[] args) {
         SortingTool tool = new SortingTool();
-        tool.processCommandLineArgs(args);
+        tool.checkArgs(args);
         tool.getStatistics();
     }
 
@@ -20,7 +20,11 @@ public class SortingTool {
 
     private enum SortingType {
         NATURAL,
-        BY_COUNT
+        BYCOUNT
+    }
+
+    private static String[] getEnumValues(Class<? extends Enum<?>> e){
+        return Arrays.stream(e.getEnumConstants()).map(Enum::name).toArray(String[]::new);
     }
 
     DataType dataType;
@@ -30,43 +34,62 @@ public class SortingTool {
         this.sortingType = SortingType.NATURAL;
     }
 
-    private void processCommandLineArgs(String[] args){
-        for (int i = 0; i < args.length; i++) {
-            args[i] = args[i].toLowerCase(Locale.ENGLISH);
-        }
-        List<String> argsList = Arrays.asList(args);
-        if (argsList.contains("-sortingtype")) {
-            int index = argsList.indexOf("-sortingtype");
-            if (index + 1 < argsList.size() && "bycount".equals(argsList.get(index + 1))){
-                sortingType = SortingType.BY_COUNT;
-            }
-        }
-        if (argsList.contains("-datatype")) {
-            int index = argsList.indexOf("-datatype");
-            if (index + 1 < argsList.size()){
-                switch (argsList.get(index + 1).toLowerCase(Locale.ENGLISH)){
-                    case "long":
-                        dataType = DataType.LONG;
-                        break;
-                    case "line":
-                        dataType = DataType.LINE;
-                        break;
-                    case "word":
-                    default:
-                        dataType = DataType.WORD;
-                        break;
+    private void checkArgs(String[] args) {
+        //search for the dataType cli argument
+        ArrayList<Integer> indices = new ArrayList<>();
+        int parameterIndex = getElementIndex(args, "-dataType");
+        if (parameterIndex != -1) {
+            indices.add(parameterIndex);
+            if (parameterIndex + 1 < args.length) {
+                String[] datatypes = getEnumValues(DataType.class);
+                if (Arrays.asList(datatypes).contains(args[parameterIndex + 1].toUpperCase())) {
+                    indices.add(parameterIndex + 1);
+                    this.dataType = DataType.valueOf(args[parameterIndex + 1].toUpperCase());
                 }
+            } else {
+                System.out.println("No data type defined!");
             }
         }
+
+        //search for the sortingType cli argument
+        parameterIndex = getElementIndex(args, "-sortingType");
+        if (parameterIndex != -1) {
+            indices.add(parameterIndex);
+            if (parameterIndex + 1 < args.length) {
+                String[] sortingTypes = getEnumValues(SortingType.class);
+                if (Arrays.asList(sortingTypes).contains(args[parameterIndex + 1].toUpperCase())) {
+                    indices.add(parameterIndex + 1);
+                    this.sortingType = SortingType.valueOf(args[parameterIndex + 1].toUpperCase());
+                }
+            } else {
+                System.out.println("No sorting type defined!");
+            }
+        }
+
+        for (int i = 0; i < args.length; i++) {
+            if (!indices.contains(i)){
+                System.out.println("\"" + args[i] + "\" isn't a valid parameter. It's skipped.");
+            }
+        }
+    }
+
+
+    private static int getElementIndex(String[] array, String element){
+        for (int i = 0; i < array.length; i++) {
+            if (Objects.equals(array[i].toLowerCase(), element.toLowerCase())){
+                return i;
+            }
+        }
+        return -1;
     }
 
     private void getStatistics() {
         ArrayList<String> stringList = getDataFromStdin();
         switch (dataType){
             case LINE:
-                if (sortingType == SortingType.BY_COUNT){
+                if (sortingType == SortingType.BYCOUNT){
                     HashMap<String, Integer> map = getStringCounter(stringList);
-                    LinkedHashMap<String, Integer> sortedMap = sortNumberHashMapByKey2(map);
+                    LinkedHashMap<String, Integer> sortedMap = sortHashMapByKey(map);
                     printWordCounterStats(sortedMap);
                 } else {
                     Collections.sort(stringList);
@@ -75,9 +98,9 @@ public class SortingTool {
                 break;
             case LONG:
                 ArrayList<Long> numberList = convertStringListToLongList(stringList);
-                if (sortingType == SortingType.BY_COUNT){
+                if (sortingType == SortingType.BYCOUNT){
                     HashMap<Long, Integer> map = getCounterHashMap(numberList);
-                    LinkedHashMap<Long, Integer> sortedMap = sortNumberHashMapByKey2(map);
+                    LinkedHashMap<Long, Integer> sortedMap = sortHashMapByKey(map);
                     printNumberCounterStats(sortedMap);
                 } else {
                     Collections.sort(numberList);
@@ -86,9 +109,9 @@ public class SortingTool {
                 break;
             case WORD:
             default:
-                if (sortingType == SortingType.BY_COUNT){
+                if (sortingType == SortingType.BYCOUNT){
                     HashMap<String, Integer> map = getStringCounter(stringList);
-                    LinkedHashMap<String, Integer> sortedMap = sortNumberHashMapByKey2(map);
+                    LinkedHashMap<String, Integer> sortedMap = sortHashMapByKey(map);
                     printWordCounterStats(sortedMap);
                 } else {
                     Collections.sort(stringList);

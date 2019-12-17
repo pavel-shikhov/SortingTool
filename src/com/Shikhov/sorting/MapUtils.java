@@ -7,33 +7,16 @@ class MapUtils {
     static ArrayList<Long> convertStringListToLongList(ArrayList<String> stringList){
         ArrayList<Long> numberList = new ArrayList<>();
         for (String stringNumber : stringList) {
-            numberList.add(Long.valueOf(stringNumber));
+            try {
+                numberList.add(Long.valueOf(stringNumber));
+            } catch (NumberFormatException e) {
+                System.out.println("\"" + stringNumber + "\" isn't a long. It's skipped.");
+            }
         }
         return numberList;
     }
 
-    static LinkedHashMap<Long, Integer> sortNumberHashMapByKey(HashMap<Long, Integer> map){
-        ArrayList<Long> keys = new ArrayList<>(map.keySet());
-        ArrayList<Integer> values = new ArrayList<>(map.values());
-        Collections.sort(keys);
-        Collections.sort(values);
-        LinkedHashMap<Long, Integer> sortedMap = new LinkedHashMap<>();
-
-        for (Integer value : values) {
-            Iterator<Long> keyIt = keys.iterator();
-            while (keyIt.hasNext()){
-                Long key = keyIt.next();
-                if (map.get(key).equals(value)){
-                    keyIt.remove();
-                    sortedMap.put(key, value);
-                    break;
-                }
-            }
-        }
-        return sortedMap;
-    }
-
-    static <E extends Comparable<E>> LinkedHashMap<E, Integer> sortNumberHashMapByKey2(HashMap<E, Integer> map){
+    static <E extends Comparable<E>> LinkedHashMap<E, Integer> sortHashMapByKey(HashMap<E, Integer> map){
         ArrayList<E> keys = new ArrayList<>(map.keySet());
         ArrayList<Integer> values = new ArrayList<>(map.values());
         Collections.sort(keys);
