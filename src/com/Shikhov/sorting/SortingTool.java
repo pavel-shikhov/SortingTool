@@ -88,7 +88,7 @@ public class SortingTool {
         switch (dataType){
             case LINE:
                 if (sortingType == SortingType.BYCOUNT){
-                    HashMap<String, Integer> map = getStringCounter(stringList);
+                    HashMap<String, Integer> map = createCounter(stringList);
                     LinkedHashMap<String, Integer> sortedMap = sortHashMapByKey(map);
                     printWordCounterStats(sortedMap);
                 } else {
@@ -99,7 +99,7 @@ public class SortingTool {
             case LONG:
                 ArrayList<Long> numberList = convertStringListToLongList(stringList);
                 if (sortingType == SortingType.BYCOUNT){
-                    HashMap<Long, Integer> map = getCounterHashMap(numberList);
+                    HashMap<Long, Integer> map = createCounter(numberList);
                     LinkedHashMap<Long, Integer> sortedMap = sortHashMapByKey(map);
                     printNumberCounterStats(sortedMap);
                 } else {
@@ -110,7 +110,7 @@ public class SortingTool {
             case WORD:
             default:
                 if (sortingType == SortingType.BYCOUNT){
-                    HashMap<String, Integer> map = getStringCounter(stringList);
+                    HashMap<String, Integer> map = createCounter(stringList);
                     LinkedHashMap<String, Integer> sortedMap = sortHashMapByKey(map);
                     printWordCounterStats(sortedMap);
                 } else {

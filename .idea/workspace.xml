@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4681b6c6-6e2d-4d4d-8fb8-e1b93d209dc2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/Shikhov/robo/Robot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SortingTool/com/Shikhov/sorting/MapUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SortingTool/com/Shikhov/sorting/MapUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SortingTool/com/Shikhov/sorting/SortingTool$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SortingTool/com/Shikhov/sorting/SortingTool$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SortingTool/com/Shikhov/sorting/SortingTool$SortingType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SortingTool/com/Shikhov/sorting/SortingTool$SortingType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SortingTool/com/Shikhov/sorting/SortingTool.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SortingTool/com/Shikhov/sorting/SortingTool.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Shikhov/sorting/MapUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Shikhov/sorting/MapUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/Shikhov/sorting/PrintUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Shikhov/sorting/PrintUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/Shikhov/sorting/SortingTool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/Shikhov/sorting/SortingTool.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +69,7 @@
       <workItem from="1576581969328" duration="8171000" />
       <workItem from="1576601973499" duration="6225000" />
       <workItem from="1576612868130" duration="6667000" />
-      <workItem from="1576619925158" duration="253000" />
+      <workItem from="1576619925158" duration="1501000" />
     </task>
     <servers />
   </component>

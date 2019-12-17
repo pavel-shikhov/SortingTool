@@ -37,20 +37,11 @@ class MapUtils {
         return sortedMap;
     }
 
-    static HashMap<Long, Integer> getCounterHashMap(ArrayList<Long> numberList){
-        Set<Long> numberSet = new HashSet<>(numberList);
-        HashMap<Long, Integer> map = new HashMap<>();
-        for (Long number : numberSet){
-            map.put(number, Collections.frequency(numberList, number));
-        }
-        return map;
-    }
-
-    static HashMap<String, Integer> getStringCounter(ArrayList<String> stringList){
-        Set<String> stringSet = new HashSet<>(stringList);
-        HashMap<String, Integer> map = new HashMap<>();
-        for (String string : stringSet){
-            map.put(string, Collections.frequency(stringList, string));
+    static <E extends Comparable<E>> HashMap<E, Integer>  createCounter(ArrayList<E> list){
+        Set<E> numberSet = new HashSet<>(list);
+        HashMap<E, Integer> map = new HashMap<>();
+        for (E item : numberSet){
+            map.put(item, Collections.frequency(list, item));
         }
         return map;
     }
