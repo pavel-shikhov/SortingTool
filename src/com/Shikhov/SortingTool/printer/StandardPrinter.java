@@ -1,12 +1,11 @@
-package com.Shikhov.sorting;
+package com.Shikhov.SortingTool.printer;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Map;
 
-class PrintUtils {
-    static void printSortedNumberStats(ArrayList<Long> sortedList){
+public class StandardPrinter implements Printer {
+    @Override
+    public void printSortedNumberStats(ArrayList<Long> sortedList) {
         System.out.println("Total numbers: " + sortedList.size() + ".");
         System.out.print("Sorted data: ");
         for (Long number : sortedList) {
@@ -14,7 +13,8 @@ class PrintUtils {
         }
     }
 
-    static void printSortedWordStats(ArrayList<String> sortedList){
+    @Override
+    public void printSortedWordStats(ArrayList<String> sortedList) {
         System.out.println("Total words: " + sortedList.size() + ".");
         System.out.print("Sorted data: ");
         for (String string : sortedList) {
@@ -22,7 +22,8 @@ class PrintUtils {
         }
     }
 
-    static void printSortedLineStats(ArrayList<String> sortedList){
+    @Override
+    public void printSortedLineStats(ArrayList<String> sortedList) {
         System.out.println("Total lines: " + sortedList.size() + ".");
         System.out.print("Sorted data: ");
         for (String string : sortedList) {
@@ -30,7 +31,8 @@ class PrintUtils {
         }
     }
 
-    static void printNumberCounterStats(Map<Long, Integer> map){
+    @Override
+    public void printNumberCounterStats(Map<Long, Integer> map) {
         long sum = 0;
         for (Integer n : map.values()){
             sum += n;
@@ -41,7 +43,8 @@ class PrintUtils {
         }
     }
 
-    static void printWordCounterStats(Map<String, Integer> map){
+    @Override
+    public void printWordCounterStats(Map<String, Integer> map) {
         long sum = 0;
         for (Integer n : map.values()){
             sum += n;
@@ -52,4 +55,15 @@ class PrintUtils {
         }
     }
 
+    @Override
+    public void printLineCounterStats(Map<String, Integer> map) {
+        long sum = 0;
+        for (Integer n : map.values()){
+            sum += n;
+        }
+        System.out.println("Total lines: " + sum + ".");
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue() + " time(s), " + Math.round(100.0 * entry.getValue() / sum) + "%.");
+        }
+    }
 }
