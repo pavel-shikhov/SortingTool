@@ -74,7 +74,7 @@ public class SortingTool {
             case LINE:
                 if (sortingType == SortingType.BYCOUNT){
                     HashMap<String, Integer> map = createCounter(data);
-                    LinkedHashMap<String, Integer> sortedMap = sortHashMapByKey(map);
+                    LinkedHashMap<String, Integer> sortedMap = sortHashMapByFrequency(map);
                     printer.printLineCounterStats(sortedMap);
                 } else {
                     Collections.sort(data);
@@ -85,7 +85,7 @@ public class SortingTool {
                 ArrayList<Long> numberList = convertStringListToLongList(data);
                 if (sortingType == SortingType.BYCOUNT){
                     HashMap<Long, Integer> map = createCounter(numberList);
-                    LinkedHashMap<Long, Integer> sortedMap = sortHashMapByKey(map);
+                    LinkedHashMap<Long, Integer> sortedMap = sortHashMapByFrequency(map);
                     printer.printNumberCounterStats(sortedMap);
                 } else {
                     Collections.sort(numberList);
@@ -96,7 +96,7 @@ public class SortingTool {
             default:
                 if (sortingType == SortingType.BYCOUNT){
                     HashMap<String, Integer> map = createCounter(data);
-                    LinkedHashMap<String, Integer> sortedMap = sortHashMapByKey(map);
+                    LinkedHashMap<String, Integer> sortedMap = sortHashMapByFrequency(map);
                     printer.printWordCounterStats(sortedMap);
                 } else {
                     Collections.sort(data);
@@ -108,7 +108,6 @@ public class SortingTool {
 
     void setDataType(DataType cliDataType){
         dataType = Objects.requireNonNullElse(cliDataType, DataType.WORD);
-        System.out.println("Set the data type to " + dataType.name());
     }
 
     void setInputSource(File cliInputFile){
@@ -122,7 +121,6 @@ public class SortingTool {
 
     void setSortingType(SortingType cliSortingType){
         sortingType = Objects.requireNonNullElse(cliSortingType, SortingType.NATURAL);
-        System.out.println("Set the sorting type to " + sortingType.name());
     }
 
     void setOutputType(File outputFile){

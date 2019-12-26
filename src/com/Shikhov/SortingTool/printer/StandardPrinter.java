@@ -7,7 +7,7 @@ public class StandardPrinter implements Printer {
     @Override
     public void printSortedNumberStats(ArrayList<Long> sortedList) {
         System.out.println("Total numbers: " + sortedList.size() + ".");
-        System.out.print("Sorted data: ");
+        System.out.println("Sorted data: ");
         for (Long number : sortedList) {
             System.out.print(number + " ");
         }
@@ -16,7 +16,7 @@ public class StandardPrinter implements Printer {
     @Override
     public void printSortedWordStats(ArrayList<String> sortedList) {
         System.out.println("Total words: " + sortedList.size() + ".");
-        System.out.print("Sorted data: ");
+        System.out.println("Sorted data: ");
         for (String string : sortedList) {
             System.out.print(string + " ");
         }
@@ -25,7 +25,7 @@ public class StandardPrinter implements Printer {
     @Override
     public void printSortedLineStats(ArrayList<String> sortedList) {
         System.out.println("Total lines: " + sortedList.size() + ".");
-        System.out.print("Sorted data: ");
+        System.out.println("Sorted data: ");
         for (String string : sortedList) {
             System.out.println(string);
         }

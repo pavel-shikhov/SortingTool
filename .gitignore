@@ -1,5 +1,6 @@
 .idea
 SortingTool.iml
 src/com/Shikhov/robo
-draft.txt
 .gitignore
+input.txt
+output.txt

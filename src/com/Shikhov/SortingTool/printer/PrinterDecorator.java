@@ -6,15 +6,8 @@ import java.util.Map;
 
 public class PrinterDecorator implements Printer {
     protected Printer printer;
-
-    private PrintStream printStream;
     public PrinterDecorator(Printer printer) {
         this.printer = printer;
-//        try {
-//            this.printStream = new PrintStream(outputFile);
-//        } catch (FileNotFoundException e) {
-//            System.out.println("File not found.");
-//        }
     }
 
     @Override

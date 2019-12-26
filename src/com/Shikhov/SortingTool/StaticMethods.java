@@ -10,20 +10,20 @@ import java.util.stream.Stream;
 class StaticMethods {
     static ArrayList<Integer> indices = new ArrayList<>();
 
-    static <E extends Comparable<E>> LinkedHashMap<E, Integer> sortHashMapByKey(HashMap<E, Integer> map){
-        ArrayList<E> keys = new ArrayList<>(map.keySet());
-        ArrayList<Integer> values = new ArrayList<>(map.values());
-        Collections.sort(keys);
+    static <E extends Comparable<E>> LinkedHashMap<E, Integer> sortHashMapByFrequency(HashMap<E, Integer> map){
+        ArrayList<E> values = new ArrayList<>(map.keySet());
+        ArrayList<Integer> frequencies = new ArrayList<>(map.values());
         Collections.sort(values);
+        Collections.sort(frequencies);
         LinkedHashMap<E, Integer> sortedMap = new LinkedHashMap<>();
 
-        for (Integer value : values) {
-            Iterator<E> keyIt = keys.iterator();
-            while (keyIt.hasNext()){
-                E key = keyIt.next();
-                if (map.get(key).equals(value)){
-                    keyIt.remove();
-                    sortedMap.put(key, value);
+        for (Integer frequency : frequencies) {
+            Iterator<E> valueIt = values.iterator();
+            while (valueIt.hasNext()){
+                E value = valueIt.next();
+                if (map.get(value).equals(frequency)){
+                    valueIt.remove();
+                    sortedMap.put(value, frequency);
                     break;
                 }
             }
